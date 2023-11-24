@@ -1,48 +1,37 @@
+import useFetch from "../../../../../client/src/hooks/useFetch";
 import "./featuredProperties.css"
 
 import React from 'react'
 
 const FeaturedProperties = () => {
+  const { data, loading, error } = useFetch("http://localhost:8800/api/hotels?featured=true");  //如果在后面加上&limit=4 就是空的array，不显示数据，后端也看不到。 问题应该是在/controllers/hotels -getHotels 的limit问题。
+ console.log(data)
   return (
     <div className="fp">
-        <div className="fpItem">
-      <img src="https://cf.bstatic.com/xdata/images/hotel/square200/433360699.webp?k=225056535c53ec78e8811e50f4933c73168fea40327835453b3800381fb19024&o=" 
-      alt="" 
-      className="fpImg" />
-      <span className="fpName">Toronto Marriott Markham</span>
-      <span className="fpCity">Markham</span>
-      <span className="fpPrice">Starting from CAD 399</span>
-      <div className="fpRating">
-        <button>8.9</button>
-        <span>Excellent</span>
-      </div>
-      </div>
-      <div className="fpItem">
-      <img src="https://cf.bstatic.com/xdata/images/hotel/square200/234873037.webp?k=00194971631cb7c1f6b8055db28916812e5689e9a2e5e8a6da413c680cbd2136&o=" 
-      alt="" 
-      className="fpImg" />
-      <span className="fpName">Pan Pacific Toronto</span>
-      <span className="fpCity">North York</span>
-      <span className="fpPrice">Starting from CAD 350</span>
-      <div className="fpRating">
-        <button>8.9</button>
-        <span>Excellent</span>
-      </div>
-      </div>
-      <div className="fpItem">
-      <img src="https://cf.bstatic.com/xdata/images/hotel/square200/69036559.webp?k=0c0b88fd0d63a4b168650641e6df0ee09d2ce00f26da4004021121557785a918&o=" 
-      alt="" 
-      className="fpImg" />
-      <span className="fpName">Days Inn by Wyndham Toronto East Lakeview</span>
-      <span className="fpCity">Scarborough</span>
-      <span className="fpPrice">Starting from CAD 155</span>
-      <div className="fpRating">
-        <button>8.9</button>
-        <span>Excellent</span>
-      </div>
-      </div>
+      {loading ? (
+        "Loading"
+      ) : (
+        <>
+          {data.map((item) => (
+            <div className="fpItem" key={item._id}>
+              <img
+                src={item.photos[0]}
+                alt=""
+                className="fpImg"
+              />
+              <span className="fpName">{item.name}</span>
+              <span className="fpCity">{item.city}</span>
+              <span className="fpPrice">Starting from ${item.cheapestPrice}</span>
+              {item.rating && <div className="fpRating">
+                <button>{item.rating}</button>
+                <span>Excellent</span>
+              </div>}
+            </div>
+          ))}
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default FeaturedProperties
+export default FeaturedProperties;
