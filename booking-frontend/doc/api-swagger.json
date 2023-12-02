@@ -10,7 +10,7 @@
       "description": "aws server"
     },
     {
-      "url": "http://34.128.145.217.nip.io/",
+      "url": "https://34.128.145.217.nip.io/bnb_v1",
       "description": "google api server",
       "home": "https://my-project-apigee-test-406821-project1.apigee.io/docs/ccbnb/1/overview"
     },

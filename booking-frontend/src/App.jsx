@@ -27,6 +27,9 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import NavBar from './components/NavBar';
 import SearchBar     from "./components/SearchBar.jsx";
+import OrdersPage from './pages/OrdersPage';
+import RoomListPage      from "./pages/RoomListPage.jsx";
+
 
 const theme = createTheme({
     palette: {
@@ -43,9 +46,9 @@ const theme = createTheme({
             main: '#ff5252', // 明亮的红色
         },
         // 背景颜色
-        background: {
-            default: '#f5f5f5', // 一个很浅的灰色，可以减轻眼睛的负担
-        },
+        // background: {
+        //     default: '#f5f5f5', // 一个很浅的灰色，可以减轻眼睛的负担
+        // },
     },
     typography: {
         // 定义默认字体系列
@@ -85,15 +88,19 @@ function App() {
             <CssBaseline/>
             <Router>
                 <NavBar />
-                <div>
+
                     <Routes>
                         <Route path="/" element={<HomePage />} />
                         <Route path="/rooms/:id" element={<RoomDetailsPage />} />
+                        <Route path="/roomlist" element={<RoomListPage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/contact" element={<ContactPage />} />
+
+                        <Route path="/orders" element={<OrdersPage />} />
+
+
                     </Routes>
 
-                </div>
 
 
             </Router>
