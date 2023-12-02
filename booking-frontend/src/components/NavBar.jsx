@@ -12,7 +12,7 @@ const NavBar = () => {
             <Container>
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap>
-                        BookingClone
+                        Booking
                     </Typography>
                 </Toolbar>
             </Container>

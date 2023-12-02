@@ -17,8 +17,12 @@ const HomePage = () => {
     return (
         <div>
             <NavBar />
+
+
             <Container>
+
                 <SearchBar />
+
                 <Grid container spacing={4}>
                     {rooms.map((room, index) => (
                         <Grid item key={index} xs={12} sm={6} md={4}>
