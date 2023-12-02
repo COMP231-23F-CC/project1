@@ -6,6 +6,10 @@
   },
   "servers": [
     {
+      "url": "http://192.168.2.10:8306/",
+        "description": "lan server"
+    },
+    {
       "url": "http://v6-510460395.ca-central-1.elb.amazonaws.com/",
       "description": "aws server"
     },

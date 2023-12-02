@@ -1,38 +1,72 @@
-// src/pages/HomePage.jsx
-
+// src/pages/RoomListPage.jsx
 import React, { useState, useEffect } from 'react';
-import NavBar from '../components/NavBar';
-import RoomCard from '../components/RoomCard';
-import SearchBar from '../components/SearchBar';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-
-const HomePage = () => {
+import Typography from '@mui/material/Typography';
+import RoomCard from '../components/RoomCard';
+import api from '../api/axios.js';
+import {useSearchParams} from "react-router-dom";
+import SearchBar from "../components/SearchBar";
+import {Box} from "@mui/material";
+const RoomListPage = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [rooms, setRooms] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const checkIn = searchParams.get('checkIn');
+    const checkOut = searchParams.get('checkOut');
 
     useEffect(() => {
-        // Fetch rooms data from API
-    }, []);
+        const fetchRooms = async () => {
+            try {
+                const res = await api.get('/room');
+                //show the data
+                console.log('data:', res);
+
+
+                setRooms(res.data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchRooms();
+    }, [checkIn, checkOut]);
+
+    const handleSearch = (newSearchParams) => {
+        // Update the URL with the new search parameters
+        setSearchParams(newSearchParams);
+    };
+
+    // if (loading) return <Typography>Loading...</Typography>;
+    // if (error) return <Typography color="error">{error}</Typography>;
 
     return (
-        <div>
+        <Container>
+            <Box sx={{ flexGrow: 1 }}>
+                {/* Header with Hotel Name */}
+                <Box sx={{ my: 4, textAlign: 'center' }}>
+                    <Typography variant="h3" component="h1" gutterBottom>
+                        Cachet Crossing at Blue Mountains, Ontario
+                    </Typography>
+                </Box>
+
+                {/* Hotel Description and Details */}
+                <Box sx={{ my: 4, mx: 2 }}>
+                    <Typography variant="h5" gutterBottom>
+                        Your Perfect Mountain Retreat
+                    </Typography>
+                    <Typography variant="body1" gutterBottom>
+
+                    </Typography>
+                </Box>
 
 
-
-            <Container>
-
-                <SearchBar />
-
-                <Grid container spacing={4}>
-                    {rooms.map((room, index) => (
-                        <Grid item key={index} xs={12} sm={6} md={4}>
-                            <RoomCard room={room} />
-                        </Grid>
-                    ))}
-                </Grid>
-            </Container>
-        </div>
+            </Box>
+        </Container>
     );
 };
 
-export default HomePage;
+export default RoomListPage;

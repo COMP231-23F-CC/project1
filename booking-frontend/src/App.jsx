@@ -5,10 +5,6 @@ import {
     Link,
     Routes
 } from "react-router-dom";
-//
-// This app requires react-bootstrap and bootstrap installed:
-//    npm install react-bootstrap bootstrap
-//
 
 import './App.css';
 //
@@ -29,7 +25,7 @@ import NavBar from './components/NavBar';
 import SearchBar     from "./components/SearchBar.jsx";
 import OrdersPage from './pages/OrdersPage';
 import RoomListPage      from "./pages/RoomListPage.jsx";
-
+import Footer from './components/Footer';
 
 const theme = createTheme({
     palette: {
@@ -101,7 +97,7 @@ function App() {
 
                     </Routes>
 
-
+                <Footer/>
 
             </Router>
             <ToastContainer/>
