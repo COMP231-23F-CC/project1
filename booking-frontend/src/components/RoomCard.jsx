@@ -14,10 +14,10 @@ const RoomCard = ({ room }) => {
             <img src='https://a0.muscache.com/im/pictures/miso/Hosting-724452913208248575/original/285def3a-6a94-4405-9606-be41e4868391.jpeg?im_w=1200'  width={400} height={300} />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {room.name}
+                   #{room.number}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {room.description}
+                    {room.desc}
                 </Typography>
             </CardContent>
             <CardActions>
