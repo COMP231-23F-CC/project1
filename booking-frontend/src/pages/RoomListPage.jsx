@@ -8,7 +8,7 @@ import api from '../api/axios.js';
 import {useSearchParams} from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import {Box} from "@mui/material";
- 
+
 
 const RoomListPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
