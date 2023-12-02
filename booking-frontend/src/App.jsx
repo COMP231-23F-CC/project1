@@ -14,8 +14,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import axios from "axios";
 
-import { ToastContainer, toast } from 'react-toastify';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './pages/HomePage';
 import RoomDetailsPage from './pages/RoomDetailsPage';
@@ -26,6 +26,10 @@ import SearchBar     from "./components/SearchBar.jsx";
 import OrdersPage from './pages/OrdersPage';
 import RoomListPage      from "./pages/RoomListPage.jsx";
 import Footer from './components/Footer';
+
+
+import LoginPage from './pages/LoginPage';
+import UserProfilePage from './pages/UserProfilePage';
 
 const theme = createTheme({
     palette: {
@@ -76,7 +80,10 @@ function App() {
 
     //error message
     const [error, setError] = useState('');
+    const handleLoginSuccess = (user) => {
+        toast.success(`Login success, welcome ${user.username}`);
 
+    }
     return (
 
         <ThemeProvider theme={theme}>
@@ -94,6 +101,9 @@ function App() {
 
                         <Route path="/orders" element={<OrdersPage />} />
 
+
+                        <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
+                        <Route path="/profile" element={<UserProfilePage />} />
 
                     </Routes>
 

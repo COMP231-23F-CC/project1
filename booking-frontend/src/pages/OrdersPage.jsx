@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
-import api from '../api/axios.js';
+import api from '../api/httpClient.js';
 const OrdersPage = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);

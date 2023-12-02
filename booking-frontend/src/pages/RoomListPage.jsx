@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import RoomCard from '../components/RoomCard';
-import api from '../api/axios.js';
+import api from '../api/httpClient.js';
 import {useSearchParams} from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import {Box} from "@mui/material";
