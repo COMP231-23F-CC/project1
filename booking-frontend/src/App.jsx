@@ -30,6 +30,7 @@ import Footer from './components/Footer';
 
 import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
+import BookingPage from './pages/BookingPage';
 
 const theme = createTheme({
     palette: {
@@ -104,6 +105,10 @@ function App() {
 
                         <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
                         <Route path="/profile" element={<UserProfilePage />} />
+
+
+                        <Route path="/booking/:roomId" element={<BookingPage />} />
+
 
                     </Routes>
 

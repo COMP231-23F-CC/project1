@@ -15,7 +15,7 @@ const LoginPage = ({ onLoginSuccess }) => {
 
     const navigate = useNavigate();
     const user = localStorage.getItem('user');
-    console.log('user:', user)
+    console.log('local user:', user)
     if(user)
     {
         navigate('/profile');

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 
-const RoomCard = ({ room }) => {
+const RoomCard = ({ room,onBook }) => {
     return (
         <Card>
             {/*<CardMedia*/}
@@ -22,7 +22,7 @@ const RoomCard = ({ room }) => {
             </CardContent>
             <CardActions>
                 <Button size="small">View Details</Button>
-                <Button size="small">Book Now</Button>
+                <Button size="small" onClick={() => onBook(room)}>Book Now</Button>
             </CardActions>
         </Card>
     );

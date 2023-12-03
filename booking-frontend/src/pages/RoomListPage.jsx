@@ -18,32 +18,59 @@ const RoomListPage = () => {
     const checkIn = searchParams.get('checkIn');
     const checkOut = searchParams.get('checkOut');
 
-    useEffect(() => {
-        const fetchRooms = async () => {
-            try {
-                const res = await api.get('/room');
-                //show the data
-                console.log('data:', res);
+    //filter
+    const [filter, setFilter] = useState();
+
+    const fetchRooms = async ( ) => {
+        try {
+            const res = await api.get('/room');
+            //show the data
+            console.log('fetchRooms res.data:', res.data);
 
 
-                setRooms(res.data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRooms();
-    }, [checkIn, checkOut]);
-
-    const handleSearch = (newSearchParams) => {
-        // Update the URL with the new search parameters
-        setSearchParams(newSearchParams);
+            setRooms(res.data);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
+
+
+    useEffect(() => {
+          fetchRooms( );
+    }, [ ]);
+
+
 
     if (loading) return <Typography>Loading...</Typography>;
     if (error) return <Typography color="error">{error}</Typography>;
+
+
+    //search room
+
+
+    const handleSearch = (filter) => {
+        console.log(`handleSearch  : `, filter);
+        // Update the URL with the new search parameters
+
+        setFilter(filter);
+
+        fetchRooms();
+    };
+
+    const handleBooking = (room) => {
+        console.log(`Booking room: ${room}`);
+        // 这里可以实现跳转到预订页面的逻辑，或者打开预订对话框等
+    };
+
+
+
+
+
+
+
+
 
     return (
         <Container>
@@ -68,19 +95,16 @@ const RoomListPage = () => {
             <SearchBar
                 initialSearchParams={{
                     checkIn: new Date(), // Or any other default or state-driven values
-                    checkOut: new Date(),
+                    checkOut: new Date().setDate(new Date().getDate() + 1),
                 }}
-                onSearch={(start, end) => {
-                    // Handle the search logic here, such as updating context or state
-                    console.log(start, end);
-                }}
+                onSearch={handleSearch}
             />
 
             <Typography variant="h4" gutterBottom>Available Rooms</Typography>
             <Grid container spacing={4}>
                 {rooms.map(room => (
                     <Grid item key={room.id} xs={12} sm={6} md={4}>
-                        <RoomCard room={room} />
+                        <RoomCard room={room} onBook={handleBooking} />
                     </Grid>
                 ))}
             </Grid>

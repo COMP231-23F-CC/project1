@@ -21,7 +21,7 @@ const RoomListPage = () => {
             try {
                 const res = await api.get('/room');
                 //show the data
-                console.log('data:', res);
+                console.log('fetchRooms res:', res);
 
 
                 setRooms(res.data);
