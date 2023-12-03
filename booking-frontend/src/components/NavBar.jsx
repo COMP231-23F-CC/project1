@@ -1,6 +1,6 @@
 // src/components/NavBar.jsx
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,6 +9,19 @@ import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
+    const userData =   localStorage.getItem('user');
+    const [user, setUser] = useState( );
+
+
+    useEffect(() => {
+        if (userData) {
+            var loginUser= JSON.parse(userData);
+            setUser(loginUser);
+        }
+
+    }, [userData]);
+
+
     return (
         <AppBar position="static">
             <Container>
@@ -22,7 +35,13 @@ const NavBar = () => {
                     <Button color="inherit" component={Link} to="/orders">My Orders</Button>
                     <Button color="inherit" component={Link} to="/contact">Contact</Button>
                     <Button color="inherit" component={Link} to="/about">About</Button>
+                    { userData && <Button color="inherit" component={Link} to="/profile">profile</Button>}
+                    { !userData &&  <Button color="inherit" component={Link} to="/login">Login</Button>}
+
+
                     <Button color="inherit" component={Link} to="/login">Login</Button>
+                     <Button color="inherit" component={Link} to="/profile">Profile {userData}   </Button>
+
 
                 </Toolbar>
             </Container>

@@ -14,10 +14,11 @@ const app = express()
 
 // 允许来自特定源的跨域请求
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'http://localhost:3000']
 };
 
 app.use(cors(corsOptions));
+
 
 
 dotenv.config()
@@ -51,9 +52,6 @@ app.use((err, req, res, next) => {
         message: errorMessage,
         stack: err.stack,
     })
-})
-app.get("/", (req, res) => {
-    res.send("hello");
 })
 app.listen(8800, () => {
     connect();

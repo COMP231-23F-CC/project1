@@ -9,36 +9,25 @@ import { useLocation } from 'react-router-dom';
 const UserProfilePage = ( props ) => {
     //get argument from the previous page
     //location.state.user
-    const location =  useLocation();
+    // const location =  useLocation();
     // console.log('location:', location)
-    const user1 = location.state.user;
 
     const [user, setUser] = useState( );
     const [error, setError] = useState('');
-
-
-    //load user data from local storage
-    const userData = localStorage.getItem('user');
-    // console.log('local storage user:', userData)
-
     const  navigate = useNavigate();
+    const userData =   localStorage.getItem('user');
 
-
-   const  localUser = JSON.parse(userData);
-
+    if(!userData)
+    {
+        navigate('/login');
+    }
 
     useEffect(() => {
-
-
-
-
-
         const fetchUser = async () => {
-
             try {
-                let userId ='';
+
                 const userData =   localStorage.getItem('user');
-                // console.log('userData:', userData)
+                console.log('userData:', userData)
                 if(userData)
                 {
                     var loginUser= JSON.parse(userData);
