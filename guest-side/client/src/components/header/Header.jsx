@@ -18,7 +18,7 @@ import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
 
 const Header = ({ type }) => {
-  const [destination, setDestination] = useState( 'Toronto');
+  const [destination, setDestination] = useState( 'toronto');
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
     {
