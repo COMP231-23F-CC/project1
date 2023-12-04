@@ -61,7 +61,7 @@ const SearchBar = ({ initialSearchParams, onSearch }) => {
         var startDate = checkInDate.format('YYYY-MM-DD');
         var endDate = checkOutDate.format('YYYY-MM-DD');
         // event.preventDefault();
-        onSearch(  {chenckIn:startDate, chenckOut: endDate} );
+        onSearch(  {checkIn:startDate, checkOut: endDate} );
     };
 
     useEffect(() => {

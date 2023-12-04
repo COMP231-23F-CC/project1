@@ -27,7 +27,7 @@ const RoomListPage = () => {
 
     //today and tomorrow string
     const today = dayjs().format('YYYY-MM-DD');
-    const tomorrow = dayjs().add(1, 'day').format('YYYY-MM-DD');
+    const tomorrow = dayjs().add(2, 'day').format('YYYY-MM-DD');
 
     const [checkIn, setCheckIn] = useState(today );
     const [checkOut, setCheckOut] = useState( tomorrow);
@@ -68,10 +68,11 @@ const RoomListPage = () => {
     const handleSearch = (filter) => {
         console.log(`handleSearch  : `, filter);
         // Update the URL with the new search parameters
-
+        let startDateString = dayjs(filter.checkIn).format('YYYY-MM-DD');
+        let endDateString = dayjs(filter.checkOut).format('YYYY-MM-DD');
         setFilter(filter);
-        setCheckIn(filter.checkIn);
-        setCheckOut(filter.checkOut);
+        setCheckIn(startDateString);
+        setCheckOut(endDateString);
 
         fetchRooms();
     };
@@ -81,8 +82,14 @@ const RoomListPage = () => {
         // 这里可以实现跳转到预订页面的逻辑，或者打开预订对话框等
 
         // navigate(`/booking/new?roomId=${room.id}&checkIn=${checkIn}&checkOut=${checkOut}`);
+        let startDateString =  filter.checkIn
+        let endDateString = filter.checkOut
 
-        navigate('/booking/new', { state: {roomId: room.id,  ...filter } });
+        //print the data
+        console.log('handleBooking filter:', filter);
+        console.log('endDateString:', filter.checkOut );
+
+        navigate('/booking/new', { state: {roomId: room.id,  checkIn:startDateString, checkOut:endDateString} });
     };
 
 

@@ -7,6 +7,7 @@ import api from '../api/httpClient.js';
 
 
 import BookingComponent from '../components/BookingComponent.jsx';
+import dayjs from "dayjs";
 const BookingPage =   () => {
     const navigate = useNavigate();
 
@@ -57,10 +58,17 @@ const BookingPage =   () => {
             const res = await api.get('/room/'+roomId);
             //show the data
             console.log('getRoom res.data:', res.data);
+            var roomData = res.data;
+
+            //days count
+            const days = dayjs(checkOut).diff(dayjs(checkIn), 'day');
+            //total price
+            const totalPrice = days * roomData.price;
 
            var bookingData= {
-                ...res.data,
+                ...roomData,
                 ...option,
+               totalPrice:totalPrice,
                guestName:userDataJson.name,
                 guestPhone  :userDataJson.phoneNumber
             }

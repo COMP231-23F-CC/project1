@@ -31,10 +31,10 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                         <Typography>{booking.desc}</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>Price:</Typography>
+                        <Typography>Total Price:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>{booking.price}</Typography>
+                        <Typography>{booking.totalPrice}</Typography>
                     </Grid>
 
 
@@ -87,6 +87,19 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                             size="small"
                         />
                     </Grid>
+
+
+                    <Grid item xs={6}>
+                        <Typography>Guest Remarks:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            value={booking.remark}
+                            onChange={(e) => onGuestInfoChange('remark', e.target.value)}
+                            size="small"
+                        />
+                    </Grid>
+
 
                 </Grid>
             </CardContent>
