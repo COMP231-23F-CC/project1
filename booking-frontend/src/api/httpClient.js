@@ -14,11 +14,20 @@ const serverFlag = 1;
 
 
 const instance = axios.create({
-    baseURL:  API_BASE_URL4
+    baseURL:  API_BASE_URL1
 });
 
 // 添加请求拦截器
 instance.interceptors.request.use(config => {
+    //load user from local storage
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user && user.id){
+        config.headers.UserId =  user.id;
+    }
+
+
+
+
     // 添加 Bearer 令牌到请求头
     // config.headers['Authorization'] = `Bearer ${BEARER_TOKEN}`;
 

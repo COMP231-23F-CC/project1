@@ -52,12 +52,11 @@ const BookingTable = () => {
             }
             const url = '/Booking/mybookings';
 
+            let apiData = {};
+            apiData.id =  userId;
 
-            const response = await api.get(url,   {
-                headers: {
-                    'UserId': userId
-                }
-            });
+
+            const response = await api.get(url);
             console.log('fetchBookings response.data:', response.data);
 
             setBookings(response.data);

@@ -29,7 +29,7 @@ const LoginPage = ({ onLoginSuccess }) => {
 
             // const res = await api.post('/user/login', credentials);
 
-            const res = await api.get('/user/1' );
+            const res = await api.post('/user/login' , credentials);
 
             // console.log('handleLogin res:', res);
             const userData = res.data;
