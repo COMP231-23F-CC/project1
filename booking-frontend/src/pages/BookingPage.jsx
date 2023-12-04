@@ -68,9 +68,11 @@ const BookingPage =   () => {
            var bookingData= {
                 ...roomData,
                 ...option,
+               userId:userDataJson.id,
                totalPrice:totalPrice,
                guestName:userDataJson.name,
-                guestPhone  :userDataJson.phoneNumber
+                guestPhone  :userDataJson.phoneNumber,
+               remark:''
             }
             console.log('bookingData:', bookingData);
 
@@ -92,14 +94,60 @@ const BookingPage =   () => {
 
     const handleConfirmBooking = () => {
 
+        var apiData=
+            {   "id": 0,
+            "userId": 1,
+            "roomId": 3,
+            "startDate": "2023-12-04",
+            "endDate": "2023-12-07",
+            "guestName": "string",
+            "guestPhone": "string",
+            "totalPrice": 0,
+            "status": "string",
+            "remark": "string"
+         }
 
-        var data = {
+//  "startDate": "2023-12-04T02:35:40.130Z",
+//   "endDate": "2023-12-04T02:35:40.130Z",
+        //date format processing
 
-        }
+        booking.startDate =  booking.checkIn
+        booking.endDate =  booking.checkOut
+
+        //print booking data
+        console.log('handleConfirmBooking booking:', booking);
+
+
+        apiData.userId = booking.userId;
+        apiData.roomId = booking.roomId;
+        apiData.startDate = booking.checkIn;
+        apiData.endDate = booking.checkOut;
+        apiData.guestName = booking.guestName;
+        apiData.guestPhone = booking.guestPhone;
+        apiData.totalPrice = booking.totalPrice;
+        apiData.status = 'new';
+        apiData.remark = booking.remark;
+
+        let dateStr = "2023-12-04";
+        let date1 = new Date(booking.startDate);
+        date1.setMinutes(date1.getMinutes() - date1.getTimezoneOffset());
+
+        //date2
+        let date2 = new Date(booking.endDate);
+        date2.setMinutes(date2.getMinutes() - date2.getTimezoneOffset());
+
+
+        let formattedDate1 = date1.toISOString();
+        let formattedDate2 = date1.toISOString();
+
+        // apiData.startDate = formattedDate1;
+        // apiData.endDate = formattedDate2;
+
+        console.log('handleConfirmBooking apiData:', apiData);
 
 
         //send booking data to backend
-        const res = api.post('/booking', booking).then((res) => {
+        const res = api.post('/booking', apiData).then((res) => {
 
 
                 console.log('handleConfirmBooking res.data:', res.data);
@@ -115,6 +163,7 @@ const BookingPage =   () => {
 
         alert("Booking confirmed!");
 
+        navigate('/myorders');
     };
 
 

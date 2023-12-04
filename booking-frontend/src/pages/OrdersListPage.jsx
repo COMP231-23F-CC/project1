@@ -11,7 +11,7 @@ const OrdersListPage = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const res = await api.get('/room');
+                const res = await api.get('/booking');
                 setOrders(res.data);
                 setLoading(false);
             } catch (err) {

@@ -43,12 +43,7 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                         <Typography>Check In Date  :</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField
-                            type={'date'}
-                            value={booking.checkIn}
-                            onChange={(e) => onGuestInfoChange('checkIn', e.target.value)}
-                            size="small"
-                        />
+                        <Typography>{booking.checkIn}</Typography>
                     </Grid>
 
 
@@ -56,12 +51,7 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                         <Typography>Check Out Date  :</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField
-                            type={'date'}
-                            value={booking.checkOut}
-                            onChange={(e) => onGuestInfoChange('checkOut', e.target.value)}
-                            size="small"
-                        />
+                        <Typography>{booking.checkOut}</Typography>
                     </Grid>
 
 

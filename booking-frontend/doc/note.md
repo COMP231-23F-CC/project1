@@ -20,12 +20,13 @@ curl -X 'POST' \
 -H 'Content-Type: application/json-patch+json' \
 -d '{
 "id": 0,
-"userId": 0,
-"roomId": 0,
-"startDate": "2023-12-04T02:10:25.925Z",
-"endDate": "2023-12-04T02:10:25.925Z",
+"userId": 1,
+"roomId": 3,
+"startDate": "2023-12-04",
+"endDate": "2023-12-09",
 "guestName": "string",
 "guestPhone": "string",
 "totalPrice": 0,
-"status": "string"
+"status": "string",
+"remark": "string"
 }'
