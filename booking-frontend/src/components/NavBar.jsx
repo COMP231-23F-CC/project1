@@ -32,7 +32,7 @@ const NavBar = () => {
                     <Button color="inherit" component={Link} to="/">Home</Button>
                     <Button color="inherit" component={Link} to="/roomlist">Rooms</Button>
 
-                    <Button color="inherit" component={Link} to="/orders">My Orders</Button>
+                    <Button color="inherit" component={Link} to="/myorders">My Orders</Button>
                     <Button color="inherit" component={Link} to="/contact">Contact</Button>
                     <Button color="inherit" component={Link} to="/about">About</Button>
                     { userData && <Button color="inherit" component={Link} to="/profile">profile</Button>}

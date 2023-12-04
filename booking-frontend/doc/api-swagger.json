@@ -1,26 +1,25 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "COMP306_ShuJin_Project1",
-    "version": "1.0"
+    "title": "COMP306_ShuJin_Project1 API",
+    "version": "v1"
   },
   "servers": [
     {
-      "url": "http://192.168.2.10:8306/",
-        "description": "lan server"
+      "url": "https://192.168.2.10:8306",
+      "description": "local Lan server"
     },
     {
       "url": "http://v6-510460395.ca-central-1.elb.amazonaws.com/",
-      "description": "aws server"
+      "description": "AWS server"
+    },
+    {
+      "url": "https://34.128.145.217.nip.io/bnb_auth_v1",
+      "description": "google proxy server (with apiKey) , https://my-project-apigee-test-406821-project1.apigee.io/docs/ccbnb/1/overview"
     },
     {
       "url": "https://34.128.145.217.nip.io/bnb_v1",
-      "description": "google api server",
-      "home": "https://my-project-apigee-test-406821-project1.apigee.io/docs/ccbnb/1/overview"
-    },
-    {
-      "url": "https://localhost:5001",
-      "description": "Local server"
+      "description": "google proxy server , https://my-project-apigee-test-406821-project1.apigee.io/docs/ccbnb/1/overview"
     }
   ],
   "paths": {
@@ -996,6 +995,22 @@
           "endDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "guestName": {
+            "type": "string",
+            "nullable": true
+          },
+          "guestPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1057,6 +1072,14 @@
             "format": "double"
           },
           "desc": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "imgUrl": {
             "type": "string",
             "nullable": true
           }

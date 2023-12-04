@@ -1,9 +1,9 @@
-// src/pages/OrdersPage.jsx
+// src/pages/OrdersListPage.jsx
 
 import React, { useState, useEffect } from 'react';
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
 import api from '../api/httpClient.js';
-const OrdersPage = () => {
+const OrdersListPage = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -48,4 +48,4 @@ const OrdersPage = () => {
     );
 };
 
-export default OrdersPage;
+export default OrdersListPage;

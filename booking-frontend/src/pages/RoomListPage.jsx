@@ -8,9 +8,12 @@ import api from '../api/httpClient.js';
 import {useSearchParams} from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import {Box} from "@mui/material";
-
+import {useNavigate} from "react-router-dom";
 
 const RoomListPage = () => {
+
+    const navigate = useNavigate();
+
     const [searchParams, setSearchParams] = useSearchParams();
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -60,8 +63,12 @@ const RoomListPage = () => {
     };
 
     const handleBooking = (room) => {
-        console.log(`Booking room: ${room}`);
+        console.log(`Booking room:  `, room);
         // 这里可以实现跳转到预订页面的逻辑，或者打开预订对话框等
+
+        navigate(`/booking/new?roomId=${room.id}&checkIn=${checkIn}&checkOut=${checkOut}`);
+
+
     };
 
 

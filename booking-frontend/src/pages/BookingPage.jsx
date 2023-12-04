@@ -1,18 +1,70 @@
-// src/pages/BookingPage.jsx
+// src/pages/SomePage.jsx
 
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import BookingComponent from '../components/BookingComponent';
+import React, { useState } from 'react';
+import BookingComponent from '../components/BookingComponent.jsx';
+import  {useNavigate} from 'react-router-dom';
+import api from '../api/httpClient.js';
 
-const BookingPage = () => {
-    const { roomId } = useParams();
-    const room = { id: roomId, name: "Sample Room" }; // 从后端获取房间详细信息
+const SomePage = () => {
+    const [booking, setBooking] = useState({
+        // 假设的初始订单数据
+        roomNumber: '101',
+        roomName: 'Deluxe Suite',
+        description: 'A luxurious room with ocean view',
+        guestName: 'John Doe',
+        phone: '123-456-7890',
+        price: '200'
+    });
+
+    const handleGuestInfoChange = (field, value) => {
+        setBooking({ ...booking, [field]: value });
+    };
+
+
+    //confirm booking button
+    const navigate = useNavigate();
+    const handleConfirmBooking = () => {
+
+        //send booking data to backend
+        const res =   api.post('/booking', booking).then((res) => {
+            console.log('handleConfirmBooking res.data:', res.data);
+
+            //goto my order list page
+            navigate('/myorders');
+
+        }
+        ).catch((err) => {
+            console.log('handleConfirmBooking err:', err);
+        });
+
+
+
+
+
+
+
+
+
+
+
+        alert("Booking confirmed!");
+        navigate('/booking');
+    };
 
     return (
         <div>
-            <BookingComponent room={room} />
+            <BookingComponent booking={booking} onGuestInfoChange={handleGuestInfoChange} />
+
+             {/*confirm booking button*/}
+            <button
+            onClick={ handleConfirmBooking}
+            >Confirm Booking</button>
+
+
+
+
         </div>
     );
 };
 
-export default BookingPage;
+export default SomePage;

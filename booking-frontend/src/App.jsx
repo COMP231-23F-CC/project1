@@ -23,7 +23,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import NavBar from './components/NavBar';
 import SearchBar     from "./components/SearchBar.jsx";
-import OrdersPage from './pages/OrdersPage';
+import OrdersListPage from './pages/OrdersListPage.jsx';
 import RoomListPage      from "./pages/RoomListPage.jsx";
 import Footer from './components/Footer';
 
@@ -100,15 +100,13 @@ function App() {
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/contact" element={<ContactPage />} />
 
-                        <Route path="/orders" element={<OrdersPage />} />
+                        <Route path="/myorders" element={<OrdersListPage />} />
 
 
                         <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
                         <Route path="/profile" element={<UserProfilePage />} />
 
-
-                        <Route path="/booking/:roomId" element={<BookingPage />} />
-
+                        <Route path="/booking/new" element={<BookingPage />} />
 
                     </Routes>
 

@@ -1,53 +1,67 @@
-// src/components/BookingComponent.jsx
+// src/components/BookingCard.jsx
 
-import React, { useState } from 'react';
-import { TextField, Button, Typography } from '@mui/material';
-import httpClient from '../api/httpClient';
+import React from 'react';
+import { Card, CardContent, Typography, TextField, Grid } from '@mui/material';
 
-const BookingComponent = ({ room }) => {
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
-
-    const handleBooking = async () => {
-        setIsLoading(true);
-        try {
-            await httpClient.post('/booking', {
-                roomId: room.id,
-                startDate: startDate,
-                endDate: endDate
-            });
-            alert('Booking successful!');
-        } catch (err) {
-            setError(err.message);
-        }
-        setIsLoading(false);
-    };
-
+const BookingCard = ({ booking, onGuestInfoChange }) => {
     return (
-        <div>
-            <Typography variant="h6">Book Room {room.name}</Typography>
-            <TextField
-                label="Start Date"
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-            />
-            <TextField
-                label="End Date"
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                InputLabelProps={{ shrink: true }}
-            />
-            <Button onClick={handleBooking} disabled={isLoading}>
-                Book Now
-            </Button>
-            {error && <p>Error: {error}</p>}
-        </div>
+        <Card variant="outlined">
+            <CardContent>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Typography variant="h6">Booking Details</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>Room Number:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>{booking.roomNumber}</Typography>
+                    </Grid>
+                    {/* Repeat for other details */}
+                    <Grid item xs={6}>
+                        <Typography>Room Name:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>{booking.roomName}</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>Description:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>{booking.description}</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>Price:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>{booking.price}</Typography>
+                    </Grid>
+
+                    <Grid item xs={6}>
+                        <Typography>Guest Name:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            value={booking.guestName}
+                            onChange={(e) => onGuestInfoChange('guestName', e.target.value)}
+                            size="small"
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography>Phone:</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            value={booking.phone}
+                            onChange={(e) => onGuestInfoChange('phone', e.target.value)}
+                            size="small"
+                        />
+                    </Grid>
+
+                </Grid>
+            </CardContent>
+        </Card>
     );
 };
 
-export default BookingComponent;
+export default BookingCard;
