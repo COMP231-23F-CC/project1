@@ -1,4 +1,9 @@
 
+
+
+
+
+
 # 使用nginx来部署应用
 FROM  nginx:stable-alpine-slim
 COPY ./dist /usr/share/nginx/html
