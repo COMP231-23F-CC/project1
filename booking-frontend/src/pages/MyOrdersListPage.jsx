@@ -50,13 +50,15 @@ const BookingTable = () => {
             if (userId === -1) {
                 return
             }
-            const url = '/Booking/mybookings';
+            const url1 = '/Booking/mybookings';
+            const url2 = '/Booking/myorders';
 
-            let apiData = {};
-            apiData.id =  userId;
+            let playload = {
+                data: userId
+            };
 
 
-            const response = await api.get(url);
+            const response = await api.post(url2, playload);
             console.log('fetchBookings response.data:', response.data);
 
             setBookings(response.data);
