@@ -42,13 +42,27 @@ const BookingPage =   () => {
     //get roomdata by roomId
     const fetchBookingData = async ( ) => {
         try {
+
+            //get user from localstorage
+            const userData =   localStorage.getItem('user');
+            console.log('userData:', userData)
+
+            const userDataJson = JSON.parse(userData);
+               if(!userData)
+                {
+                     navigate('/login');
+                }
+
+
             const res = await api.get('/room/'+roomId);
             //show the data
             console.log('getRoom res.data:', res.data);
 
            var bookingData= {
                 ...res.data,
-                ...option
+                ...option,
+               guestName:userDataJson.name,
+                guestPhone  :userDataJson.phoneNumber
             }
             console.log('bookingData:', bookingData);
 
@@ -69,6 +83,12 @@ const BookingPage =   () => {
 
 
     const handleConfirmBooking = () => {
+
+
+        var data = {
+
+        }
+
 
         //send booking data to backend
         const res = api.post('/booking', booking).then((res) => {

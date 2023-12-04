@@ -78,12 +78,12 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
 
 
                     <Grid item xs={6}>
-                        <Typography>Phone:</Typography>
+                        <Typography>Guest Phone:</Typography>
                     </Grid>
                     <Grid item xs={6}>
                         <TextField
-                            value={booking.phone}
-                            onChange={(e) => onGuestInfoChange('phone', e.target.value)}
+                            value={booking.guestPhone}
+                            onChange={(e) => onGuestInfoChange('guestPhone', e.target.value)}
                             size="small"
                         />
                     </Grid>
