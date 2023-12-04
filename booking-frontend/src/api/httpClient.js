@@ -19,7 +19,7 @@ instance.interceptors.request.use(config => {
 
     // 添加 API 密钥到 URL 的查询参数中
     const separator = config.url.includes('?') ? '&' : '?';
-    // config.url = `${config.url}${separator}apikey=${API_KEY}`;
+    config.url = `${config.url}${separator}apikey=${API_KEY}`;
 
     return config;
 });
