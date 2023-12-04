@@ -17,6 +17,7 @@ import {
 import api from '../api/httpClient';
 import dayjs from "dayjs";
 import { useNavigate } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 
 const BookingTable = () => {
@@ -100,6 +101,11 @@ const BookingTable = () => {
         }
     };
 
+
+    const handleViewDetails = (id) => {
+        navigate(`/order/${id}`);
+    };
+
     return (
         <>
             <TableContainer component={Paper}>
@@ -140,6 +146,14 @@ const BookingTable = () => {
 
                                 <TableCell align="right">{booking.remark}</TableCell>
                                 <TableCell align="right">
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={() => handleViewDetails(booking.id)}
+                                    >
+                                        View Details
+                                    </Button>
+
                                     <Button variant="outlined" color="secondary" onClick={() => handleClickOpen(booking.id)}>
                                         Delete
                                     </Button>

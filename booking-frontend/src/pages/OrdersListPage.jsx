@@ -16,12 +16,15 @@ import {
 } from '@mui/material';
 import api from '../api/httpClient';
 import dayjs from "dayjs";
+import { useNavigate } from 'react-router-dom';
 
 
 const BookingTable = () => {
     const [bookings, setBookings] = useState([]);
     const [open, setOpen] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchBookings();
@@ -61,6 +64,10 @@ const BookingTable = () => {
         } catch (err) {
             console.error('Error deleting booking:', err);
         }
+    };
+
+    const handleViewDetails = (id) => {
+        navigate(`/order/${id}`);
     };
 
     return (
@@ -103,6 +110,13 @@ const BookingTable = () => {
 
                                 <TableCell align="right">{booking.remark}</TableCell>
                                 <TableCell align="right">
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
+                                        onClick={() => handleViewDetails(booking.id)}
+                                    >
+                                        View Details
+                                    </Button>
                                     <Button variant="outlined" color="secondary" onClick={() => handleClickOpen(booking.id)}>
                                         Delete
                                     </Button>

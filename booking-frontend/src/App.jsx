@@ -31,7 +31,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import BookingPage from './pages/BookingPage';
 
 import MyOrdersListPage from './pages/MyOrdersListPage.jsx';
-
+import OrderDetailsPage from './pages/OrderDetailsPage.jsx';
 
 const theme = createTheme({
     palette: {
@@ -102,7 +102,7 @@ function App() {
 
                         <Route path="/myorders" element={<MyOrdersListPage />} />
                         <Route path="/orders" element={<OrdersListPage />} />
-
+                        <Route path="/order/:orderId" element={<OrderDetailsPage />} />
 
                         <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
                         <Route path="/profile" element={<UserProfilePage />} />
