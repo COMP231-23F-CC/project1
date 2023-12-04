@@ -6,7 +6,11 @@
   },
   "servers": [
     {
-      "url": "https://192.168.2.10:8306",
+      "url": "http://localhost:8306",
+      "description": "localhost  "
+    },
+    {
+      "url": "http://192.168.2.10:8306",
       "description": "local Lan server"
     },
     {
@@ -1011,6 +1015,16 @@
           "status": {
             "type": "string",
             "nullable": true
+          },
+          "remark": {
+            "type": "string",
+            "nullable": true
+          },
+          "room": {
+            "$ref": "#/components/schemas/RoomDTO"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserDTO"
           }
         },
         "additionalProperties": false
