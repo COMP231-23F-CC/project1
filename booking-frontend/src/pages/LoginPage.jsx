@@ -40,7 +40,7 @@ const LoginPage = ({ onLoginSuccess }) => {
             //goto ProfilePage and transfer user data
             navigate('/profile', {state: {user: userData}});
             //refresh the page
-            window.location.reload();
+            // window.location.reload();
             // toast.success(`Login success, welcome ${res.data.name}`);
 
 

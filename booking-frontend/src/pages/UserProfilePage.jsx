@@ -36,7 +36,7 @@ const UserProfilePage = ( props ) => {
                 }
                 else {
                     navigate('/login');
-                    window.location.reload();
+                    // window.location.reload();
                 }
             } catch (err) {
                 setError(err.message);

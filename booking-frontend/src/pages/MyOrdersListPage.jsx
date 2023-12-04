@@ -16,29 +16,66 @@ import {
 } from '@mui/material';
 import api from '../api/httpClient';
 import dayjs from "dayjs";
+import { useNavigate } from 'react-router-dom';
 
 
 const BookingTable = () => {
     const [bookings, setBookings] = useState([]);
     const [open, setOpen] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        fetchBookings();
-    }, []);
 
     const fetchBookings = async () => {
         try {
-            const response = await api.get('/Booking');
-            //show the data
+
+            let userId = -1;
+            //get user from localstorage
+            const userData = localStorage.getItem('user');
+            console.log('userData:', userData)
+
+            if (!userData) {
+                navigate('/login');
+                return
+            }
+
+
+            const loginUser = JSON.parse(userData);
+            console.log('logined user:', loginUser.id)
+            userId = loginUser.id
+
+            // const response = await api.get('/Booking', {id: userId} );
+
+            if (userId === -1) {
+                return
+            }
+            const url = '/Booking/mybookings';
+
+
+            const response = await api.get(url,   {
+                headers: {
+                    'UserId': userId
+                }
+            });
             console.log('fetchBookings response.data:', response.data);
 
             setBookings(response.data);
+
 
         } catch (err) {
             console.error('Error fetching bookings:', err);
         }
     };
+
+
+
+
+    useEffect(() => {
+
+        fetchBookings();
+    }, [ ]);
+
+
 
     const handleClickOpen = (id) => {
         setOpen(true);

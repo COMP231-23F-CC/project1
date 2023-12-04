@@ -38,7 +38,13 @@ const RoomListPage = () => {
 
     const fetchRooms = async ( ) => {
         try {
-            const res = await api.get('/room');
+            // curl -X 'GET'   'http://192.168.2.10:8306/api/Room/GetAvailableRoomsByStartDateAndEndDate?startDate=2023-12-03&endDate=2023-12-5'
+            console.log('fetchRooms filter:', filter);
+            let start = dayjs(filter.checkIn).format('YYYY-MM-DD');
+            let end = dayjs(filter.checkOut).format('YYYY-MM-DD');
+            let url= `/room/GetAvailableRoomsByStartDateAndEndDate?startDate=${start}&endDate=${end}`;
+               console.log('fetchRooms url:', url);
+            const res = await api.get(url);
             //show the data
             console.log('fetchRooms res.data:', res.data);
 

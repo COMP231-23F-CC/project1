@@ -128,17 +128,17 @@ const BookingPage =   () => {
         apiData.status = 'new';
         apiData.remark = booking.remark;
 
-        let dateStr = "2023-12-04";
-        let date1 = new Date(booking.startDate);
-        date1.setMinutes(date1.getMinutes() - date1.getTimezoneOffset());
-
-        //date2
-        let date2 = new Date(booking.endDate);
-        date2.setMinutes(date2.getMinutes() - date2.getTimezoneOffset());
-
-
-        let formattedDate1 = date1.toISOString();
-        let formattedDate2 = date1.toISOString();
+        // let dateStr = "2023-12-04";
+        // let date1 = new Date(booking.startDate);
+        // date1.setMinutes(date1.getMinutes() - date1.getTimezoneOffset());
+        //
+        // //date2
+        // let date2 = new Date(booking.endDate);
+        // date2.setMinutes(date2.getMinutes() - date2.getTimezoneOffset());
+        //
+        //
+        // let formattedDate1 = date1.toISOString();
+        // let formattedDate2 = date2.toISOString();
 
         // apiData.startDate = formattedDate1;
         // apiData.endDate = formattedDate2;
@@ -151,19 +151,19 @@ const BookingPage =   () => {
 
 
                 console.log('handleConfirmBooking res.data:', res.data);
-
+            navigate('/myorders');
                 //goto my order list page
 
 
             }
         ).catch((err) => {
             console.log('handleConfirmBooking err:', err);
+            alert('Booking failed.' + err);
         });
 
 
-        alert("Booking confirmed!");
 
-        navigate('/myorders');
+        // alert("Booking confirmed!");
     };
 
 

@@ -2,8 +2,14 @@
 
 import React from 'react';
 import { Card, CardContent, Typography, TextField, Grid } from '@mui/material';
-
+import { format } from 'date-fns';
 const BookingCard = ({ booking, onGuestInfoChange }) => {
+    // console.log('BookingCard booking:', booking.checkIn);
+
+    // const today =  format(new Date(), 'yyyy-MM-dd');
+    const start= booking.checkIn
+    const end= booking.checkOut
+
     return (
         <Card variant="outlined">
             <CardContent>
@@ -43,7 +49,7 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                         <Typography>Check In Date  :</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>{booking.checkIn}</Typography>
+                        <Typography> {start} </Typography>
                     </Grid>
 
 
@@ -51,7 +57,7 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                         <Typography>Check Out Date  :</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>{booking.checkOut}</Typography>
+                        <Typography> {end}</Typography>
                     </Grid>
 
 

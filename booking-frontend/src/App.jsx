@@ -30,6 +30,9 @@ import LoginPage from './pages/LoginPage';
 import UserProfilePage from './pages/UserProfilePage';
 import BookingPage from './pages/BookingPage';
 
+import MyOrdersListPage from './pages/MyOrdersListPage.jsx';
+
+
 const theme = createTheme({
     palette: {
         // 定义主色，决定按钮、链接等控件的颜色
@@ -97,7 +100,8 @@ function App() {
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/contact" element={<ContactPage />} />
 
-                        <Route path="/myorders" element={<OrdersListPage />} />
+                        <Route path="/myorders" element={<MyOrdersListPage />} />
+                        <Route path="/orders" element={<OrdersListPage />} />
 
 
                         <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
