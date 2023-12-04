@@ -1,70 +1,116 @@
 // src/pages/SomePage.jsx
 
-import React, { useState } from 'react';
-import BookingComponent from '../components/BookingComponent.jsx';
-import  {useNavigate} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+
+import {useNavigate, useLocation, useSearchParams} from 'react-router-dom';
 import api from '../api/httpClient.js';
 
-const SomePage = () => {
-    const [booking, setBooking] = useState({
-        // 假设的初始订单数据
-        roomNumber: '101',
-        roomName: 'Deluxe Suite',
-        description: 'A luxurious room with ocean view',
-        guestName: 'John Doe',
-        phone: '123-456-7890',
-        price: '200'
-    });
+
+import BookingComponent from '../components/BookingComponent.jsx';
+const BookingPage =   () => {
+    const navigate = useNavigate();
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [rooms, setRooms] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+
+
+
+
+    const location = useLocation();
+    //show the data
+    console.log('BookingPage location.state:', location.state);
+    //
+    const roomId = location.state?.roomId;
+    const checkIn = location.state?.checkIn;
+    const checkOut = location.state?.checkOut;
+
+    const option = {
+        roomId,
+        checkIn,
+        checkOut
+    }
+
+
+    const [booking, setBooking] = useState({ });
+
+
+
+    //get roomdata by roomId
+    const fetchBookingData = async ( ) => {
+        try {
+            const res = await api.get('/room/'+roomId);
+            //show the data
+            console.log('getRoom res.data:', res.data);
+
+           var bookingData= {
+                ...res.data,
+                ...option
+            }
+            console.log('bookingData:', bookingData);
+
+            //set room data
+            setBooking(bookingData);
+        } catch (err) {
+           setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+
 
     const handleGuestInfoChange = (field, value) => {
-        setBooking({ ...booking, [field]: value });
+        setBooking({...booking, [field]: value});
     };
 
 
-    //confirm booking button
-    const navigate = useNavigate();
     const handleConfirmBooking = () => {
 
         //send booking data to backend
-        const res =   api.post('/booking', booking).then((res) => {
-            console.log('handleConfirmBooking res.data:', res.data);
+        const res = api.post('/booking', booking).then((res) => {
 
-            //goto my order list page
-            navigate('/myorders');
 
-        }
+                console.log('handleConfirmBooking res.data:', res.data);
+
+                //goto my order list page
+
+
+            }
         ).catch((err) => {
             console.log('handleConfirmBooking err:', err);
         });
 
 
-
-
-
-
-
-
-
-
-
         alert("Booking confirmed!");
-        navigate('/booking');
+
     };
+
+
+    useEffect(() => {
+        fetchBookingData( );
+    }, [ ]);
+
+
+    // if (loading) return <Typography>Loading...</Typography>;
+    // if (error) return <Typography color="error">{error}</Typography>;
 
     return (
         <div>
-            <BookingComponent booking={booking} onGuestInfoChange={handleGuestInfoChange} />
+            <BookingComponent booking={booking} onGuestInfoChange={handleGuestInfoChange}/>
 
-             {/*confirm booking button*/}
+            {/*confirm booking button*/}
             <button
-            onClick={ handleConfirmBooking}
-            >Confirm Booking</button>
-
-
+                onClick={handleConfirmBooking}
+            >Confirm Booking
+            </button>
 
 
         </div>
     );
 };
 
-export default SomePage;
+export default BookingPage;

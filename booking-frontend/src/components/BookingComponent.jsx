@@ -15,20 +15,20 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                         <Typography>Room Number:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>{booking.roomNumber}</Typography>
+                        <Typography>{booking.number}</Typography>
                     </Grid>
                     {/* Repeat for other details */}
                     <Grid item xs={6}>
-                        <Typography>Room Name:</Typography>
+                        <Typography>Room Type:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>{booking.roomName}</Typography>
+                        <Typography>{booking.type}</Typography>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography>Description:</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Typography>{booking.description}</Typography>
+                        <Typography>{booking.desc}</Typography>
                     </Grid>
                     <Grid item xs={6}>
                         <Typography>Price:</Typography>
@@ -36,6 +36,34 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                     <Grid item xs={6}>
                         <Typography>{booking.price}</Typography>
                     </Grid>
+
+
+
+                    <Grid item xs={6}>
+                        <Typography>Check In Date  :</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            type={'date'}
+                            value={booking.checkIn}
+                            onChange={(e) => onGuestInfoChange('checkIn', e.target.value)}
+                            size="small"
+                        />
+                    </Grid>
+
+
+                    <Grid item xs={6}>
+                        <Typography>Check Out Date  :</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            type={'date'}
+                            value={booking.checkOut}
+                            onChange={(e) => onGuestInfoChange('checkOut', e.target.value)}
+                            size="small"
+                        />
+                    </Grid>
+
 
                     <Grid item xs={6}>
                         <Typography>Guest Name:</Typography>
@@ -47,6 +75,8 @@ const BookingCard = ({ booking, onGuestInfoChange }) => {
                             size="small"
                         />
                     </Grid>
+
+
                     <Grid item xs={6}>
                         <Typography>Phone:</Typography>
                     </Grid>

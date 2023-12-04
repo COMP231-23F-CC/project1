@@ -9,6 +9,7 @@ import {useSearchParams} from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import {Box} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import dayjs from 'dayjs';
 
 const RoomListPage = () => {
 
@@ -18,11 +19,22 @@ const RoomListPage = () => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const checkIn = searchParams.get('checkIn');
-    const checkOut = searchParams.get('checkOut');
+    // const checkIn = searchParams.get('checkIn');
+    // const checkOut = searchParams.get('checkOut');
+
+    // checkIn: new Date(), // Or any other default or state-driven values
+    //     checkOut: new Date().setDate(new Date().getDate() + 1),
+
+    //today and tomorrow string
+    const today = dayjs().format('YYYY-MM-DD');
+    const tomorrow = dayjs().add(1, 'day').format('YYYY-MM-DD');
+
+    const [checkIn, setCheckIn] = useState(today );
+    const [checkOut, setCheckOut] = useState( tomorrow);
+
 
     //filter
-    const [filter, setFilter] = useState();
+    const [filter, setFilter] = useState({ checkIn, checkOut });
 
     const fetchRooms = async ( ) => {
         try {
@@ -58,6 +70,8 @@ const RoomListPage = () => {
         // Update the URL with the new search parameters
 
         setFilter(filter);
+        setCheckIn(filter.checkIn);
+        setCheckOut(filter.checkOut);
 
         fetchRooms();
     };
@@ -66,9 +80,9 @@ const RoomListPage = () => {
         console.log(`Booking room:  `, room);
         // 这里可以实现跳转到预订页面的逻辑，或者打开预订对话框等
 
-        navigate(`/booking/new?roomId=${room.id}&checkIn=${checkIn}&checkOut=${checkOut}`);
+        // navigate(`/booking/new?roomId=${room.id}&checkIn=${checkIn}&checkOut=${checkOut}`);
 
-
+        navigate('/booking/new', { state: {roomId: room.id,  ...filter } });
     };
 
 
@@ -100,10 +114,7 @@ const RoomListPage = () => {
                 </Box>
             {/*<SearchBar initialSearchParams={{ checkIn, checkOut }} onSearch={handleSearch} />*/}
             <SearchBar
-                initialSearchParams={{
-                    checkIn: new Date(), // Or any other default or state-driven values
-                    checkOut: new Date().setDate(new Date().getDate() + 1),
-                }}
+                initialSearchParams={ filter}
                 onSearch={handleSearch}
             />
 
