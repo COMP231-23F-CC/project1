@@ -17,10 +17,11 @@ const SERVER4 = 'https://34.128.145.217.nip.io/bnb_auth_v1/api' // for productio
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: '0.0.0.0',
     port: 3000,
     proxy: {
       '/api': {
-        target: SERVER2,
+        target: SERVER4,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

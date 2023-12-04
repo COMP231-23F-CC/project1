@@ -1,3 +1,3 @@
 
-pnpm run build
+#pnpm run build
 docker-compose up --build
