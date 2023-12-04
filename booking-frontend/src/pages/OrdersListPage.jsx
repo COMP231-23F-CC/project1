@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, List, ListItem, ListItemText } from '@mui/material';
 import api from '../api/httpClient.js';
+
+import OrdersTableComponent from '../components/OrdersTableComponent';
+
 const OrdersListPage = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,6 +26,20 @@ const OrdersListPage = () => {
         fetchOrders();
     }, []);
 
+
+
+    const handleGuestInfoChange = (orderIndex, field, value) => {
+        const updatedOrders = orders.map((order, index) => {
+            if (index === orderIndex) {
+                return { ...order, [field]: value };
+            }
+            return order;
+        });
+        setOrders(updatedOrders);
+    };
+
+
+
     if (loading) {
         return <Typography>Loading orders...</Typography>;
     }
@@ -34,16 +51,7 @@ const OrdersListPage = () => {
     return (
         <div>
             <Typography variant="h4">Your Orders</Typography>
-            <List>
-                {orders.map(order => (
-                    <ListItem key={order.id}>
-                        <ListItemText
-                            primary={`Order ID: ${order.id}`}
-                            secondary={`Room ID: ${order.roomId} - Start Date: ${order.startDate} - End Date: ${order.endDate}`}
-                        />
-                    </ListItem>
-                ))}
-            </List>
+            <OrdersTableComponent orders={orders} onGuestInfoChange={handleGuestInfoChange} />
         </div>
     );
 };
