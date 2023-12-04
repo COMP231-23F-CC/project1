@@ -18,11 +18,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import HomePage from './pages/HomePage';
-import RoomDetailsPage from './pages/RoomDetailsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import NavBar from './components/NavBar';
-import SearchBar     from "./components/SearchBar.jsx";
 import OrdersListPage from './pages/OrdersListPage.jsx';
 import RoomListPage      from "./pages/RoomListPage.jsx";
 import Footer from './components/Footer';
@@ -95,7 +93,6 @@ function App() {
 
                     <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/rooms/:id" element={<RoomDetailsPage />} />
                         <Route path="/roomlist" element={<RoomListPage />} />
                         <Route path="/about" element={<AboutPage />} />
                         <Route path="/contact" element={<ContactPage />} />
