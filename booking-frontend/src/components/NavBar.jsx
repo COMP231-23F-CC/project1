@@ -35,12 +35,13 @@ const NavBar = () => {
                     <Button color="inherit" component={Link} to="/myorders">My Orders</Button>
                     <Button color="inherit" component={Link} to="/contact">Contact</Button>
                     <Button color="inherit" component={Link} to="/about">About</Button>
-                    { userData && <Button color="inherit" component={Link} to="/profile">profile</Button>}
+                    {/*{ userData && <Button color="inherit" component={Link} to="/profile">profile</Button>}*/}
                     { !userData &&  <Button color="inherit" component={Link} to="/login">Login</Button>}
+                    { userData &&  <Button color="inherit" component={Link} to="/profile">profile</Button>}
 
 
-                    <Button color="inherit" component={Link} to="/login">Login</Button>
-                     <Button color="inherit" component={Link} to="/profile">Profile   </Button>
+                    {/*<Button color="inherit" component={Link} to="/login">Login</Button>*/}
+                    {/* <Button color="inherit" component={Link} to="/profile">Profile   </Button>*/}
 
 
                 </Toolbar>

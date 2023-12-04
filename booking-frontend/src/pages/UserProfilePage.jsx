@@ -36,6 +36,7 @@ const UserProfilePage = ( props ) => {
                 }
                 else {
                     navigate('/login');
+                    window.location.reload();
                 }
             } catch (err) {
                 setError(err.message);
@@ -53,6 +54,7 @@ const UserProfilePage = ( props ) => {
             <button onClick={() => {
                 localStorage.removeItem('user');
                 navigate('/login');
+                window.location.reload();
             }}>Logout</button>
 
             {error && <p>Error: {error}</p>}
